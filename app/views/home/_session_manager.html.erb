@@ -1,0 +1,25 @@
+<% if current_user %>
+  <%= render 'home/admin_session' %>
+  <li class="nav navbar-nav dropdown "> 
+    <a class=" dropdown-toggle text-light text-decoration-none " style="list-style-type: none;"  href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+       <%= current_user.name %> 
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      
+      <li><%= link_to "Editar my cuenta", edit_user_registration_path, class:"dropdown-item"%>
+
+      <li><hr class="dropdown-divider"></li>
+      <li><%= button_to "Salir", destroy_user_session_path, method: :delete, class:"dropdown-item active fw-light" %></li>
+    </ul>
+  </li>
+<% else %>
+    <li class="nav navbar-nav  dropdown "> 
+        <a class=" dropdown-toggle text-light text-decoration-none " style="list-style-type: none;"  href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           No has ingresado
+        </a>
+        <ul class="dropdown-menu " aria-labelledby="navbarDropdown">  
+           <%= link_to "Sign up", new_user_registration_path, class:"nav-link active  " %>
+           <%= link_to "Login", new_user_session_path, class:"nav-link active  " %>
+        </ul>
+    </li>
+ <% end %>

@@ -1,0 +1,27 @@
+
+<% if current_user.has_role? :admin %>
+       
+  <li class="nav navbar-nav dropdown "> 
+    <a class=" dropdown-toggle text-light text-decoration-none " style="list-style-type: none;"  href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+       <%= current_user.roles.pluck(:name) %>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      
+      <li><%= link_to "Nuevo Enologo", new_enologist_path, class:"dropdown-item"%>
+      <li><%= link_to "Nueva Cepa", new_strain_path, class:"dropdown-item"%>
+      <li><%= link_to "Nuevo Vino", new_wine_path, class:"dropdown-item"%>
+      <li><%= link_to "Calificar Vino", new_score_path, class:"dropdown-item"%>
+    </ul>
+  </li>
+<% else %>
+    <li class="nav navbar-nav  dropdown "> 
+        <a class=" dropdown-toggle text-light text-decoration-none " style="list-style-type: none;"  href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <%= current_user.roles.pluck(:name) %>
+        </a>
+        <ul class="dropdown-menu " aria-labelledby="navbarDropdown">  
+           <%= link_to "vinos", wines_path, class:"nav-link active  " %>
+           <%= link_to "Calificar Vino", new_score_path, class:"nav-link active  " %>
+          
+        </ul>
+    </li>
+ <% end %>
